@@ -1,4 +1,4 @@
-package Ch06_functional_object
+package ch06_functional_object
 
 // n, d를 클래스 파라미터라 함
 // 스칼라 컴파일러가 클래스 파라미터를 종합해 주 생성자를 만들어줌
