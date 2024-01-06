@@ -34,3 +34,16 @@ s indexOf ('o', 5)
 "aBc".toLowerCase()
 "aBc".toLowerCase
 "aBc" toLowerCase
+
+/*
+스칼라의 == 은 equals 를 호출한다.
+자바의 == 처럼 참조 동일성을 확인하려면 eq, ne 연산자를 사용한다.
+하지만 eq, ne 는 자바 객체에 직접 매핑한 객체에만 사용할 수 있다.
+ */
+val str1 = "abc"
+val str2 = "abc"
+val str3 = new String("abc")
+str1 == str2
+str1 eq str2
+str2 == str3
+str2 eq str3 // 이것만 false
