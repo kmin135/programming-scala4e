@@ -14,19 +14,30 @@ class Rational(n: Int, d: Int) {
   println(s"In Primary Constructor : Created $n/$d")
 
   private val g = gcd(n.abs, d.abs)
+  /*
+  n, d는 Rational 의 메서드내에서도 다른 객체의 값은 읽을 수 없다.
+  즉, 아래는 컴파일이 안 된다. that의 d, n을 읽을 수 없기 때문.
+  def add(that: Rational): Rational = new Rational(n * that.d + that.n * d, d * that.d)
+
+  다른 Rational 객체의 n, d에 접근하려면 필드로 만들어야한다.
+   */
   val number: Int = n / g
   val denom: Int = d / g
 
+  // 자바의 java.lang.Object 의 toString을 override
   override def toString: String = s"$number/$denom"
 
-  // 보조 생성자. 모든 보조 생성자의 첫 구문은 this(...) 여야 한다.
+  // 보조 생성자. 모든 보조 생성자는 반드시 같은 클래스에 속한 다른 생성자를 호출하는 코드로 시작해야한다.
+  // 즉, 모든 보조 생성자의 첫 구문은 this(...) 여야 한다.
   // 결과적으로 모든 보조생성자는 주 생성자를 호출하게 된다.
   // 또한 주 생성자만이 슈퍼클래스의 생성자를 호출할 수 있다.
+  // 이 규칙을 통해 모든 생성자 호출을 거슬러 올라가면 결국 주 생성자를 호출하게 된다.
+  // = 생성자는 클래스의 유일한 진입점이다.
   def this(n: Int) = this(n, 1)
 
   // 일반적인 영문, 숫자 조합의 식별자
-  def add(that: Rational): Rational =
-    new Rational(number * that.denom + that.number * denom, denom * that.denom)
+  def add(that: Rational): Rational = new Rational(number * that.denom + that.number * denom, denom * that.denom)
+
   // 연산자 식별자 (하나 이상의 연산자 문자로 구성)
   def +(that: Rational) = this.add(that)
   // 메서드 오버로드
