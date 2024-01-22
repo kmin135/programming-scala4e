@@ -84,5 +84,11 @@ object RationalMain {
         implicit def intToRational(x: Int) = new Rational(x)
 
         println(2 * r2)
+
+        /*
+        연산자 메서드, 암시적 타입 변환 모두 코드를 간결하게 해주지만
+        지나치면 오히려 의미를 파악하기가 더 어려울 수 있으므로
+        간결함과 가독성의 균형을 잘 잡아서 사용하는 것이 중요하다.
+         */
     }
 }
